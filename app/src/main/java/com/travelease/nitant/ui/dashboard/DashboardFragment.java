@@ -10,16 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.travelease.nitant.databinding.FragmentDashboardBinding;
+import com.travelease.nitant.databinding.FragmentNavigationBinding;
 
 public class DashboardFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentNavigationBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+
+        binding = FragmentNavigationBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
 
