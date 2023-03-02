@@ -11,15 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.travelease.nitant.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TripFragAdapter extends RecyclerView.Adapter<TripFragAdapter.myclass> {
 
-    String[] id,title,detail;
+    List<TripItemModel> list;
     Context context;
 
-    public TripFragAdapter(String[] id, String[] title, String[] detail, Context context) {
-        this.id = id;
-        this.title = title;
-        this.detail = detail;
+    public TripFragAdapter(List<TripItemModel> list, Context context) {
+        this.list = list;
         this.context = context;
     }
 
@@ -32,14 +33,15 @@ public class TripFragAdapter extends RecyclerView.Adapter<TripFragAdapter.myclas
 
     @Override
     public void onBindViewHolder(@NonNull myclass holder, int position) {
-        holder.tvID.setText(id[position]);
-        holder.tvTitle.setText(title[position]);
-        holder.tvDetail.setText(detail[position]);
+
+        holder.tvID.setText(Integer.toString(list.get(position).getId()));
+        holder.tvTitle.setText(list.get(position).getTitle());
+        holder.tvDetail.setText(list.get(position).getDetail());
     }
 
     @Override
     public int getItemCount() {
-        return id.length;
+        return list.size();
     }
 
     public class myclass extends RecyclerView.ViewHolder{

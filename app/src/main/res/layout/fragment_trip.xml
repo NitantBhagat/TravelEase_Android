@@ -8,14 +8,11 @@
     tools:context=".ui.Trip.TripFragment"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="welcome"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/rv_tripfrag_items">
 
     </androidx.recyclerview.widget.RecyclerView>

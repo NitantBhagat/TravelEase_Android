@@ -14,12 +14,12 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.travelease.nitant.ui.Navigation.NavigationFragment"
-        android:label="@string/title_dashboard"
+        android:label="Navigation"
         tools:layout="@layout/fragment_navigation" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.travelease.nitant.ui.Trip.TripFragment"
-        android:label="@string/title_notifications"
+        android:label="Trip"
         tools:layout="@layout/fragment_trip" />
 </navigation>
