@@ -4,16 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ui.Trip.TripFragment"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/heading_bg"
+        android:weightSum="3"
+        >
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:text="Trip Management"
+        android:textSize="36dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:layout_weight="1"
+        />
 
+        <ImageView
+            android:id="@+id/iv_tripfrag_add"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/baseline_add_circle"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rv_tripfrag_items">
+        android:id="@+id/rv_tripfrag_items"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 

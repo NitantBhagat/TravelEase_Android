@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -50,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.menu_settings)
         {
-
+            Toast.makeText(this, "Setttings", Toast.LENGTH_SHORT).show();
         } else if (item.getItemId()==R.id.menu_logout) {
             Intent i = new Intent(HomeActivity.this,LoginActivity.class);
             startActivity(i);

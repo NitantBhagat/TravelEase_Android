@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,9 +19,11 @@ import com.travelease.nitant.databinding.FragmentTripBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripFragment extends Fragment {
+public class TripFragment extends Fragment implements View.OnClickListener {
 
     private FragmentTripBinding binding;
+
+    ImageView ivAdd;
     RecyclerView rvTrip;
     //TEMPORARY DATA IN ITEMS//Starts
     int[] id={1,2,3,4,5,6};
@@ -35,6 +39,7 @@ public class TripFragment extends Fragment {
         binding = FragmentTripBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         rvTrip= root.findViewById(R.id.rv_tripfrag_items);
+        ivAdd= root.findViewById(R.id.iv_tripfrag_add);
 //
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvTrip.setLayoutManager(linearLayoutManager);
@@ -48,6 +53,7 @@ public class TripFragment extends Fragment {
         TripFragAdapter tripFragAdapter = new TripFragAdapter(list,getContext());
         rvTrip.setAdapter(tripFragAdapter);
 
+        ivAdd.setOnClickListener(this);
 //
         return root;
     }
@@ -56,5 +62,10 @@ public class TripFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+        Toast.makeText(getContext(), "Add button is Clicked", Toast.LENGTH_SHORT).show();
     }
 }
