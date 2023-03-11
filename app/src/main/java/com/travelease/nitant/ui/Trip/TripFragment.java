@@ -1,5 +1,6 @@
 package com.travelease.nitant.ui.Trip;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.travelease.nitant.AddActivity;
 import com.travelease.nitant.R;
 import com.travelease.nitant.databinding.FragmentTripBinding;
 
@@ -66,6 +68,7 @@ public class TripFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(getContext(), "Add button is Clicked", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(), AddActivity.class);
+        startActivity(intent);
     }
 }
