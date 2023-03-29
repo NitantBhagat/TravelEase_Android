@@ -1,5 +1,7 @@
 package com.travelease.nitant.database;
 
+import static com.travelease.nitant.ui.Trip.TripFragment.refresh;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -56,8 +58,8 @@ public class TripItemDBHelper extends SQLiteOpenHelper {
             Toast.makeText( context, "Failed!", Toast.LENGTH_SHORT).show();
         }else
         {
+            refresh();
             Toast.makeText(context, "Added Succesdully", Toast.LENGTH_SHORT).show();
-
         }
         db.close();
     }
@@ -84,6 +86,33 @@ public class TripItemDBHelper extends SQLiteOpenHelper {
 
 
         return tripdata;
+    }
+
+    public void Update(TripItemModel trip){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("title",trip.getTitle());
+        cv.put("detail",trip.getDetail());
+        String where = ID+"="+trip.getId();
+        long Result = db.update(TBLNAME,cv,where,null);
+        if(Result==-1)
+        {
+            Toast.makeText( context, "Failed!", Toast.LENGTH_SHORT).show();
+        }else
+        {
+            Toast.makeText(context, "Updated Succesdully", Toast.LENGTH_SHORT).show();
+
+        }
+        db.close();
+        refresh();
+    }
+
+    public void Delete(int id)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        String where = ID+"="+id;
+        db.delete(TBLNAME,where,null);
+        db.close();
     }
 
 }

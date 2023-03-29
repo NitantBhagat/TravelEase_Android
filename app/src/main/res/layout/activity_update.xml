@@ -26,30 +26,30 @@
             android:gravity="center"
             android:padding="15dp" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center" >
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            app:srcCompat="@drawable/library_add_24"
-            android:layout_marginEnd="35dp"/>
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    app:srcCompat="@drawable/library_add_24"
+                    android:layout_marginEnd="35dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Trip"
-            android:textSize="36sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update Trip"
+                    android:textSize="36sp"/>
 
-        </LinearLayout>
+            </LinearLayout>
 
-<!---->
+            <!---->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_addtrip_title"
+                android:id="@+id/layout_updatetrip_title"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 android:textColorHint="@color/light_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_addtrip_title"
+                    android:id="@+id/et_updatetrip_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -70,7 +70,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_addtrip_detail"
+                android:id="@+id/layout_updatetrip_detail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                 app:passwordToggleTint="@color/light_blue"
                 >
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_addtrip_detail"
+                    android:id="@+id/et_updatetrip_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -91,8 +91,8 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_addtrip_add"
-                android:text="Add"
+                android:id="@+id/btn_updatetrip_update"
+                android:text="Update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

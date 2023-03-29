@@ -1,7 +1,13 @@
 package com.travelease.nitant.ui.Trip;
 
+import static com.travelease.nitant.ui.Trip.TripFragment.refresh;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -10,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.travelease.nitant.R;
+import com.travelease.nitant.database.TripItemDBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +39,40 @@ public class TripFragAdapter extends RecyclerView.Adapter<TripFragAdapter.myclas
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myclass holder, int position) {
+    public void onBindViewHolder(@NonNull myclass holder, @SuppressLint("RecyclerView") int position) {
 
         holder.tvID.setText(Integer.toString(list.get(position).getId()));
         holder.tvTitle.setText(list.get(position).getTitle());
         holder.tvDetail.setText(list.get(position).getDetail());
+        holder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+                MenuItem update = contextMenu.add(0,0,0,"Update");
+                MenuItem delete = contextMenu.add(0,1,0,"Delete");
+
+                update.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
+                        Intent intent = new Intent(context,UpdateActivity.class);
+                        intent.putExtra("id",list.get(position).getId());
+                        intent.putExtra("title",list.get(position).getTitle());
+                        intent.putExtra("detail",list.get(position).getDetail());
+                        context.startActivity(intent);
+
+                        return false;
+                    }
+                });
+                delete.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
+                        TripItemDBHelper tripItemDBHelper = new TripItemDBHelper(context);
+                        tripItemDBHelper.Delete(list.get(position).getId());
+                        refresh();
+                        return false;
+                    }
+                });
+            }
+        });
     }
 
     @Override

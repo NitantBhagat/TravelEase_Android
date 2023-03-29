@@ -1,17 +1,14 @@
-package com.travelease.nitant;
+package com.travelease.nitant.ui.Trip;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.travelease.nitant.R;
 import com.travelease.nitant.database.TripItemDBHelper;
-import com.travelease.nitant.ui.Trip.TripFragment;
-import com.travelease.nitant.ui.Trip.TripItemModel;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -34,9 +31,7 @@ public class AddActivity extends AppCompatActivity {
                 tripmodel.setDetail(detail);
                 TripItemDBHelper tripItemDBHelper = new TripItemDBHelper(AddActivity.this);
                 tripItemDBHelper.Insert(tripmodel);
-                Toast.makeText(AddActivity.this, "Data Added.", Toast.LENGTH_SHORT).show();
                 finish();
-
             }
         });
     }
