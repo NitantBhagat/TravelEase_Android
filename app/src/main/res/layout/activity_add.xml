@@ -13,20 +13,93 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cv_add_addcard">
+        android:id="@+id/cv_add_addcard"
+        android:layout_marginTop="70dp"
+        android:elevation="15dp"
+        app:cardCornerRadius="15dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/notestransparent">
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="15dp" >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:srcCompat="@drawable/library_add_24"
+            android:layout_marginEnd="35dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Trip"
+            android:textSize="36sp"/>
+
         </LinearLayout>
 
+<!---->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_addtrip_title"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:hintEnabled="true"
+                android:hint="Title"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textColorHint="@color/light_blue">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_addtrip_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    />
 
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_addtrip_detail"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:hintEnabled="true"
+                android:hint="Detail"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textColorHint="@color/light_blue"
+                app:passwordToggleTint="@color/light_blue"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_addtrip_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_addtrip_add"
+                android:text="Add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/light_blue"
+                app:cornerRadius="5dp"
+                />
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

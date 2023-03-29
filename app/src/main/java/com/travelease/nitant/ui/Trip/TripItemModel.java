@@ -7,11 +7,6 @@ public class TripItemModel {
     String title,detail;
 
 
-    public TripItemModel(int id, String title, String detail) {
-        this.id = id;
-        this.title = title;
-        this.detail = detail;
-    }
 
     public int getId() {
         return id;
