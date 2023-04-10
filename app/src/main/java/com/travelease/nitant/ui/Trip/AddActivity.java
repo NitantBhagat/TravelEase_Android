@@ -1,5 +1,7 @@
 package com.travelease.nitant.ui.Trip;
 
+import static com.travelease.nitant.ui.Trip.TripFragment.refresh;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -31,6 +33,7 @@ public class AddActivity extends AppCompatActivity {
                 tripmodel.setDetail(detail);
                 TripItemDBHelper tripItemDBHelper = new TripItemDBHelper(AddActivity.this);
                 tripItemDBHelper.Insert(tripmodel);
+                refresh();
                 finish();
             }
         });
