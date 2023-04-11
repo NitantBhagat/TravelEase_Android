@@ -61,6 +61,12 @@ public class RegisterActivity extends AppCompatActivity {
                     etContact.requestFocus();
                     return;
                 }
+                if(!(contact.length() ==10))
+                {
+                    etContact.setError("Contact is Required");
+                    etContact.requestFocus();
+                    return;
+                }
                 if(!Patterns.PHONE.matcher(contact).matches())
                 {
                     etContact.setError("Enter Valid Contact Number");
