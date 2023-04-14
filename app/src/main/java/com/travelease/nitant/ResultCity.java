@@ -9,13 +9,13 @@ public class ResultCity {
 
     @SerializedName("City")
     @Expose
-    private List<City> city;
+    private List<CityModel> city;
 
-    public List<City> getCity() {
+    public List<CityModel> getCity() {
         return city;
     }
 
-    public void setCity(List<City> city) {
+    public void setCity(List<CityModel> city) {
         this.city = city;
     }
 

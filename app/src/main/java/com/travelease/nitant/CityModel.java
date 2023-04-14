@@ -4,7 +4,7 @@ package com.travelease.nitant;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class City {
+public class CityModel {
 
     @SerializedName("id")
     @Expose

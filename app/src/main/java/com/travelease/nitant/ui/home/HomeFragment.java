@@ -17,14 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.travelease.nitant.APIClient;
 import com.travelease.nitant.APIInterface;
 
-import com.travelease.nitant.City;
+import com.travelease.nitant.CityModel;
 import com.travelease.nitant.R;
 import com.travelease.nitant.ResultCity;
 import com.travelease.nitant.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
@@ -35,7 +38,7 @@ public class HomeFragment extends Fragment {
 
     Spinner spinnercity;
 
-    ArrayList<com.travelease.nitant.City> arlocations ;
+    List<CityModel> arlocations ;
 
     APIInterface apiInterface;
 
@@ -61,11 +64,24 @@ public class HomeFragment extends Fragment {
         spinnercity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(getActivity(),""+spinnercity.getSelectedItem().toString() +" "+ i , Toast.LENGTH_SHORT).show();
                 cityS = spinnercity.getSelectedItem().toString();
                 if(!(i==0))
                 {
-                Toast.makeText(getActivity(),""+spinnercity.getSelectedItem().toString() +" "+ i , Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(),""+spinnercity.getSelectedItem().toString() +" "+ i , Toast.LENGTH_SHORT).show();
+                    Call<ResultCity> call=  apiInterface.getCityLocation(cityS);
+                    call.enqueue(new Callback<ResultCity>() {
+                        @Override
+                        public void onResponse(Call<ResultCity> call, Response<ResultCity> response) {
+                            arlocations=response.body().getCity();
+                            HomeFragAdapter homeFragAdapter = new HomeFragAdapter((ArrayList<CityModel>) arlocations,getActivity());
+                            rvlocation.setAdapter(homeFragAdapter);
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResultCity> call, Throwable t) {
+
+                        }
+                    });
                 }
             }
 

@@ -5,13 +5,10 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface APIInterface {
-
-    @FormUrlEncoded
-    @POST("TravelEase/city.php")
-    ArrayList<City> getCityLocation(@Field("city") String city);
 
     @FormUrlEncoded
     @POST("TravelEase/registration.php")
@@ -20,5 +17,9 @@ public interface APIInterface {
                              @Field("email") String email,
                              @Field("password") String password);
 
+
+    @FormUrlEncoded
+    @POST("TravelEase/city.php")
+    Call<ResultCity> getCityLocation(@Field("city") String city);
 
 }
