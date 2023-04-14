@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp">
 
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_location"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:elevation="15dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_cv_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:gravity="center_horizontal"
+            android:textSize="24sp"
+            android:padding="5dp"/>
+
+    </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>
