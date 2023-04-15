@@ -22,4 +22,7 @@ public interface APIInterface {
     @POST("TravelEase/city.php")
     Call<ResultCity> getCityLocation(@Field("city") String city);
 
+    @GET("TravelEase/cityname.php")
+    Call<ResultCName> getCityName();
+
 }

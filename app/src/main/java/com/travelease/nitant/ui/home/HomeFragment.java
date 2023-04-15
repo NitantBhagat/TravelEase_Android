@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,7 +17,9 @@ import com.travelease.nitant.APIClient;
 import com.travelease.nitant.APIInterface;
 
 import com.travelease.nitant.CityModel;
+import com.travelease.nitant.CityName;
 import com.travelease.nitant.R;
+import com.travelease.nitant.ResultCName;
 import com.travelease.nitant.ResultCity;
 import com.travelease.nitant.databinding.FragmentHomeBinding;
 
@@ -32,14 +33,14 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
 
 
-    // Add the different city in this array
-    String[] City = {"Select a City","Ahmedabad"};
+    String[] City,listm ;
+    List<CityName> citynames;
     private FragmentHomeBinding binding;
 
     Spinner spinnercity;
 
     List<CityModel> arlocations ;
-
+    List<CityName> CityNameList;
     APIInterface apiInterface;
 
     RecyclerView rvlocation;
@@ -50,23 +51,38 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        ArrayAdapter<String> adapterCity = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, City);
         spinnercity= root.findViewById(R.id.spi_fraghome_city);
         rvlocation = root.findViewById(R.id.rv_homefrag_location);
-
+        apiInterface = APIClient.getAvik().create(APIInterface.class);
         rvlocation.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        spinnercity.setAdapter(adapterCity);
+        Call<ResultCName> call = apiInterface.getCityName();
+        call.enqueue(new Callback<ResultCName>() {
+            @Override
+            public void onResponse(Call<ResultCName> call, Response<ResultCName> response) {
+                CityNameList=response.body().getCityName();
+//                Toast.makeText(getActivity(), ""+ CityNameList.get(0).getCity(), Toast.LENGTH_SHORT).show();
+                listm= new String[CityNameList.size()];
+                City=getlist(CityNameList);
+                ArrayAdapter<String> adapterCity = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,City);
+                spinnercity.setAdapter(adapterCity);
+            }
 
-        apiInterface = APIClient.getAvik().create(APIInterface.class);
+
+
+            @Override
+            public void onFailure(Call<ResultCName> call, Throwable t) {
+
+            }
+        });
+
+
 
         spinnercity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 cityS = spinnercity.getSelectedItem().toString();
-                if(!(i==0))
-                {
+
 //                Toast.makeText(getActivity(),""+spinnercity.getSelectedItem().toString() +" "+ i , Toast.LENGTH_SHORT).show();
                     Call<ResultCity> call=  apiInterface.getCityLocation(cityS);
                     call.enqueue(new Callback<ResultCity>() {
@@ -82,7 +98,6 @@ public class HomeFragment extends Fragment {
 
                         }
                     });
-                }
             }
 
             @Override
@@ -95,6 +110,18 @@ public class HomeFragment extends Fragment {
 //        final TextView textView = binding.textHome;
         return root;
     }
+
+    private String[] getlist(List<CityName> cityNameList) {
+
+        for(int i=0;i<CityNameList.size();i++)
+        {
+            listm[i]=CityNameList.get(i).getCity();
+        }
+        return listm;
+    }
+
+
+
 
     @Override
     public void onDestroyView() {

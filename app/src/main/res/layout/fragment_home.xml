@@ -7,7 +7,23 @@
     tools:context=".ui.home.HomeFragment"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/heading_bg"
+        android:padding="1dp">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:text="Places"
+        android:textSize="26sp"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        >
 
+    </androidx.appcompat.widget.AppCompatTextView>
+    </LinearLayout>
     <Spinner
         android:id="@+id/spi_fraghome_city"
         android:layout_width="match_parent"
