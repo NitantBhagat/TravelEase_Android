@@ -24,6 +24,7 @@ import com.travelease.nitant.ResultCity;
 import com.travelease.nitant.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -62,7 +63,8 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<ResultCName> call, Response<ResultCName> response) {
                 CityNameList=response.body().getCityName();
 //                Toast.makeText(getActivity(), ""+ CityNameList.get(0).getCity(), Toast.LENGTH_SHORT).show();
-                listm= new String[CityNameList.size()];
+                int size=CityNameList.size()+1;
+                listm= new String[size];
                 City=getlist(CityNameList);
                 ArrayAdapter<String> adapterCity = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,City);
                 spinnercity.setAdapter(adapterCity);
@@ -112,10 +114,10 @@ public class HomeFragment extends Fragment {
     }
 
     private String[] getlist(List<CityName> cityNameList) {
-
-        for(int i=0;i<CityNameList.size();i++)
+        listm[0]= Arrays.toString(new String[]{"Select a City"});
+        for(int i=1;i<CityNameList.size()+1;i++)
         {
-            listm[i]=CityNameList.get(i).getCity();
+            listm[i]=CityNameList.get(i-1).getCity();
         }
         return listm;
     }
