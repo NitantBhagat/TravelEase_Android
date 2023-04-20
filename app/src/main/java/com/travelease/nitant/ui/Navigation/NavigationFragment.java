@@ -24,7 +24,7 @@ public class NavigationFragment extends Fragment {
 
 
 
-        final TextView textView = binding.textDashboard;
+
         return root;
     }
 

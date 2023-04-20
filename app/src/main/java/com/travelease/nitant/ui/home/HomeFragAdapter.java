@@ -1,7 +1,6 @@
 package com.travelease.nitant.ui.home;
 
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.travelease.nitant.CityModel;
 import com.travelease.nitant.R;
 
 import java.util.ArrayList;

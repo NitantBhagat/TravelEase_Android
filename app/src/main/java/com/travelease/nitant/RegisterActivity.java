@@ -1,11 +1,14 @@
 package com.travelease.nitant;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -121,7 +124,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call call, Throwable t) {
-                        Toast.makeText(RegisterActivity.this, "Error in Registraion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Registraion Failed", Toast.LENGTH_SHORT).show();
+                        etName.setError("Username must be unique");
+                        etName.requestFocus();
                     }
                 });
             }
@@ -136,9 +141,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void VerifyDetail(String uname, String contact, String email, String password, String conpass) {
-
-    }
 
     //Assignings IDs
     private void getID() {

@@ -1,6 +1,8 @@
 package com.travelease.nitant;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,6 +55,10 @@ public class HomeActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Setttings", Toast.LENGTH_SHORT).show();
         } else if (item.getItemId()==R.id.menu_logout) {
+            SharedPreferences sharedlogin = getSharedPreferences("login", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editorLogin = sharedlogin.edit();
+            editorLogin.putBoolean("is_Login",false);
+            editorLogin.apply();
             Intent i = new Intent(HomeActivity.this,LoginActivity.class);
             startActivity(i);
             finish();

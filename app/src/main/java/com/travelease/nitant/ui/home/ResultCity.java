@@ -1,5 +1,5 @@
 
-package com.travelease.nitant;
+package com.travelease.nitant.ui.home;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

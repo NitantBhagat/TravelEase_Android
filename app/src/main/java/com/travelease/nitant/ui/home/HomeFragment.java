@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,11 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.travelease.nitant.APIClient;
 import com.travelease.nitant.APIInterface;
 
-import com.travelease.nitant.CityModel;
-import com.travelease.nitant.CityName;
 import com.travelease.nitant.R;
-import com.travelease.nitant.ResultCName;
-import com.travelease.nitant.ResultCity;
 import com.travelease.nitant.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
@@ -74,7 +71,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ResultCName> call, Throwable t) {
-
+                Toast.makeText(getActivity(), "Failure :"+ t, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -86,20 +83,22 @@ public class HomeFragment extends Fragment {
                 cityS = spinnercity.getSelectedItem().toString();
 
 //                Toast.makeText(getActivity(),""+spinnercity.getSelectedItem().toString() +" "+ i , Toast.LENGTH_SHORT).show();
-                    Call<ResultCity> call=  apiInterface.getCityLocation(cityS);
+                if(!(i==0)) {
+                    Call<ResultCity> call = apiInterface.getCityLocation(cityS);
                     call.enqueue(new Callback<ResultCity>() {
                         @Override
                         public void onResponse(Call<ResultCity> call, Response<ResultCity> response) {
-                            arlocations=response.body().getCity();
-                            HomeFragAdapter homeFragAdapter = new HomeFragAdapter((ArrayList<CityModel>) arlocations,getActivity());
+                            arlocations = response.body().getCity();
+                            HomeFragAdapter homeFragAdapter = new HomeFragAdapter((ArrayList<CityModel>) arlocations, getActivity());
                             rvlocation.setAdapter(homeFragAdapter);
                         }
 
                         @Override
                         public void onFailure(Call<ResultCity> call, Throwable t) {
-
+                            Toast.makeText(getActivity(), "Failure :" + t, Toast.LENGTH_SHORT).show();
                         }
                     });
+                }
             }
 
             @Override

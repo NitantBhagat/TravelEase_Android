@@ -1,5 +1,5 @@
 
-package com.travelease.nitant;
+package com.travelease.nitant.ui.home;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

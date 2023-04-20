@@ -1,6 +1,7 @@
 package com.travelease.nitant;
 
-import java.util.ArrayList;
+import com.travelease.nitant.ui.home.ResultCName;
+import com.travelease.nitant.ui.home.ResultCity;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -25,4 +26,8 @@ public interface APIInterface {
     @GET("TravelEase/cityname.php")
     Call<ResultCName> getCityName();
 
+    @FormUrlEncoded
+    @POST("TravelEase/login.php")
+    Call<ResultUInfo> login(@Field("uname") String name,
+                             @Field("password") String password);
 }
