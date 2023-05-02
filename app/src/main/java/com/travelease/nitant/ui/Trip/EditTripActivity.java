@@ -6,12 +6,16 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.travelease.nitant.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class EditTripActivity extends AppCompatActivity {
@@ -23,28 +27,48 @@ public class EditTripActivity extends AppCompatActivity {
 
     private String date;
 
+    private TextView etActivity;
+
+    private ArrayList<String> activity;
+
+    private ListView lvActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_trip);
         getID();
         initDatePicker();
-
+        activity = new ArrayList<>();
 
         dateButton.setText(getTodaysDate());
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,activity);
+        lvActivity.setAdapter(adapter);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(EditTripActivity.this, ""+date , Toast.LENGTH_SHORT).show();
+                String act = etActivity.getText().toString().trim();
+                activity.add(act);
+                refreshlist();
+                etActivity.setText(null);
+//                Toast.makeText(EditTripActivity.this, ""+date , Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
+    private void refreshlist() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,activity);
+        lvActivity.setAdapter(adapter);
+    }
+
     private void getID() {
         dateButton = findViewById(R.id.datePickerButton);
         btnAdd = findViewById(R.id.btn_edit_add);
+        etActivity = findViewById(R.id.et_edit_activity);
+        lvActivity = findViewById(R.id.lv_edit_activity);
     }
 
 
