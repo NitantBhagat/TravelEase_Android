@@ -78,7 +78,13 @@ public class TripFragAdapter extends RecyclerView.Adapter<TripFragAdapter.myclas
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, ""+list.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, ""+list.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context , TripManageActivity.class);
+                intent.putExtra("id",list.get(position).getId());
+                intent.putExtra("destination",list.get(position).getTitle());
+                context.startActivity(intent);
+
+
             }
         });
     }

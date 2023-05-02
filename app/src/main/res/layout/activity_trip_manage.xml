@@ -1,0 +1,84 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg">
+
+    <!-- Header section -->
+    <TextView
+        android:id="@+id/tv_Manage_Destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Destination"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+    <!--Add "-" before end date to differentiate from start Date-->
+    <TextView
+        android:id="@+id/tv_Manage_StartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="64dp"
+        android:layout_marginStart="16dp"
+        android:text="Start Date" />
+    <TextView
+        android:id="@+id/tv_Manage_Enddate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="64dp"
+        android:layout_toEndOf="@+id/tv_Manage_StartDate"
+        android:text="- End Date" />
+
+    <!-- Activities section -->
+    <TextView
+        android:id="@+id/activitiesTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="96dp"
+        android:layout_marginStart="16dp"
+        android:text="Activities" />
+
+    <ListView
+        android:id="@+id/lv_Manage_Activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activitiesTitleTextView"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
+    <!-- Buttons section -->
+    <Button
+        android:id="@+id/btn_Manage_Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="38dp"
+        android:background="#285DFF"
+        android:text="Edit"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/btn_Manage_Delete"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:background="#285DFF"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_below="@id/btn_Manage_Edit"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="Delete" />-->
+
+</RelativeLayout>
