@@ -17,6 +17,17 @@
         android:textColor="@color/black"
         android:textSize="24sp" />
     <!--Add "-" before end date to differentiate from start Date-->
+
+    <TextView
+        android:id="@+id/from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="64dp"
+        android:layout_marginStart="16dp"
+        android:text="From :" />
+
     <TextView
         android:id="@+id/tv_Manage_StartDate"
         android:layout_width="wrap_content"
@@ -25,16 +36,8 @@
         android:textColor="@color/black"
         android:layout_marginTop="64dp"
         android:layout_marginStart="16dp"
-        android:text="Start Date" />
-    <TextView
-        android:id="@+id/tv_Manage_Enddate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="64dp"
-        android:layout_toEndOf="@+id/tv_Manage_StartDate"
-        android:text="- End Date" />
+        android:layout_toRightOf="@+id/from"
+        android:text="Date" />
 
     <!-- Activities section -->
     <TextView

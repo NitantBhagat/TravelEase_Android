@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class TripManageActivity extends AppCompatActivity {
 
-    private TextView tv_Destination,tv_StartDate,tv_Enddate;
+    private TextView tv_Destination,tv_StartDate;
     private Button btn_Edit;
     private ArrayList<String> arrayList;
     private ListView lvDestination;
@@ -55,7 +55,6 @@ public class TripManageActivity extends AppCompatActivity {
     }
 
     private void getID() {
-        tv_Enddate=findViewById(R.id.tv_Manage_Enddate);
         tv_StartDate=findViewById(R.id.tv_Manage_StartDate);
         tv_Destination=findViewById(R.id.tv_Manage_Destination);
         btn_Edit=findViewById(R.id.btn_Manage_Edit);

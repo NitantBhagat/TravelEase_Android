@@ -7,62 +7,81 @@
     android:background="@drawable/bg">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:text="Select Date:"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_edit_Sdate"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Start Date"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:textColorHint="@color/light_blue"
-            android:layout_weight="1">
+    <Button
+        android:id="@+id/datePickerButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="JAN 01 2020"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        style="?android:spinnerStyle"
+        android:layout_marginTop="10dp"
+        android:onClick="openDatePicker"/>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:weightSum="2">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_edit_Sdate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:inputType="date"
-                />
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/layout_edit_Sdate"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:hint="Start Date"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:textColorHint="@color/light_blue"-->
+<!--            android:layout_weight="1">-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/ed_edit_Sdate"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:inputType="date" />-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_edit_Edate"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="End Date"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:textColorHint="@color/light_blue"
-            android:layout_weight="1">
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_edit_Edate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:inputType="date"
-                />
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/layout_edit_Edate"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:hint="End Date"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:textColorHint="@color/light_blue"-->
+<!--            android:layout_weight="1">-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/ed_edit_Edate"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:inputType="date"-->
+<!--                />-->
 
-    </LinearLayout>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--    </LinearLayout>-->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="* Fill Starting date and End Date Only Once , Filling it again will override existing dates."
+        android:text="* Fill Date Only Once , Filling it again will override existing date."
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="2dp"/>
@@ -87,7 +106,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/addButton"
+        android:id="@+id/btn_edit_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
@@ -95,9 +114,9 @@
         android:layout_marginTop="15dp"/>
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/lv_edit_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/addButton" />
+        android:layout_below="@id/btn_edit_add" />
 
 </LinearLayout>
