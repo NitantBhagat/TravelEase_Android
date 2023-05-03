@@ -31,6 +31,4 @@ public interface APIInterface {
     Call<ResultUInfo> login(@Field("uname") String name,
                              @Field("password") String password);
 
-    @GET("TravelEase/Places.php")
-    Call<ResultLocation> getLocation();
 }
