@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.travelease.nitant.R;
+import com.travelease.nitant.database.ActivityDBHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,9 +27,9 @@ public class EditTripActivity extends AppCompatActivity {
 
     private Button btnAdd;
 
-    private String date;
+    private String date,uid;
 
-    private TextView etActivity;
+    private TextView etActivity,etUid;
 
     private ArrayList<String> activity;
 
@@ -40,6 +42,13 @@ public class EditTripActivity extends AppCompatActivity {
         getID();
         initDatePicker();
         activity = new ArrayList<>();
+//        USE ACTMODEL TO INSERT ACTIVITY WITH UID AND DATEMODEL TO ADD DATE
+        ActivityModel actModel = new ActivityModel();
+
+
+        Intent intent = getIntent();
+        uid= intent.getStringExtra("id");
+        etUid.setText(uid);
 
         dateButton.setText(getTodaysDate());
 
@@ -50,7 +59,25 @@ public class EditTripActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String act = etActivity.getText().toString().trim();
-                activity.add(act);
+                if(act.isEmpty())
+                {
+
+                    etActivity.setError("Activity can't be empty");
+                    etActivity.requestFocus();
+                    return;
+
+                }
+                else {
+
+                    activity.add(act);
+                    actModel.setId(uid);
+                    actModel.setActivity(act);
+
+                }
+                actModel.setDate(date);
+                ActivityDBHelper activityDBHelper = new ActivityDBHelper(EditTripActivity.this);
+                activityDBHelper.insertActivity(actModel);
+
                 refreshlist();
                 etActivity.setText(null);
 //                Toast.makeText(EditTripActivity.this, ""+date , Toast.LENGTH_SHORT).show();
@@ -68,6 +95,7 @@ public class EditTripActivity extends AppCompatActivity {
         dateButton = findViewById(R.id.datePickerButton);
         btnAdd = findViewById(R.id.btn_edit_add);
         etActivity = findViewById(R.id.et_edit_activity);
+        etUid = findViewById(R.id.tv_edit_uid);
         lvActivity = findViewById(R.id.lv_edit_activity);
     }
 

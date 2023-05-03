@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.travelease.nitant.R;
@@ -38,7 +39,10 @@ public class HomeFragAdapter extends RecyclerView.Adapter<HomeFragAdapter.Myclas
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, ""+position+" "+arraylocation.get(position).getPlace(), Toast.LENGTH_SHORT).show();
+
+                //Get Place and City name , sent it to different fragment (Navigation fragment) to get LAT LONG
+                Toast.makeText(context, ""+position+""+arraylocation.get(position).getPlace() + arraylocation.get(position).getCity(), Toast.LENGTH_SHORT).show();
+
             }
         });
     }
