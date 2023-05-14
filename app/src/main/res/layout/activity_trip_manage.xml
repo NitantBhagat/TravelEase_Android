@@ -86,17 +86,17 @@
         android:textColor="@color/white"
         android:textSize="18sp" />
 
-    <!--    <Button-->
-<!--        android:id="@+id/btn_Manage_Delete"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="18sp"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:background="#285DFF"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:layout_below="@id/btn_Manage_Edit"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:text="Delete" />-->
+    <Button
+        android:id="@+id/btn_Manage_Budget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_Manage_Edit"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="33dp"
+        android:background="#285DFF"
+        android:text="Budget"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
 </RelativeLayout>

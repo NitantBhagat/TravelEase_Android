@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 @Override
                 public void onFailure(Call call, Throwable t) {
-                    Log.d(TAG, "onFailure: "+t);
+//                    Log.d(TAG, "onFailure: "+t);
                     Toast.makeText(LoginActivity.this, "User Name and Password does not match", Toast.LENGTH_SHORT).show();
                     finish();
                     overridePendingTransition( 0, 0);

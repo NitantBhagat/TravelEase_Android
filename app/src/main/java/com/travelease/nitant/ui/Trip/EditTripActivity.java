@@ -52,6 +52,9 @@ public class EditTripActivity extends AppCompatActivity {
 
         dateButton.setText(getTodaysDate());
 
+//        activity.add("Museum Of Himachal Culture & Folk Art");
+//        activity.add("Manali Wildlife Sanctuary");
+//        activity.add("Rohtang Pass");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,activity);
         lvActivity.setAdapter(adapter);
 

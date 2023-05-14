@@ -114,5 +114,4 @@ public class TripItemDBHelper extends SQLiteOpenHelper {
         db.delete(TBLNAME,where,null);
         db.close();
     }
-
 }

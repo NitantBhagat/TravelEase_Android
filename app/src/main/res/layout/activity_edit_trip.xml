@@ -101,13 +101,13 @@
 
 <!--    </LinearLayout>-->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="* Fill Date Only Once , Filling it again will override existing date."
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="2dp"/>
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="* Fill Date Only Once , Filling it again will override existing date."-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="2dp"/>-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_edit_activity"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

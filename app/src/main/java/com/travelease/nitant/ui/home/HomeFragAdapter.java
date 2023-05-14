@@ -2,6 +2,7 @@ package com.travelease.nitant.ui.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.travelease.nitant.GoogleMapActivity;
 import com.travelease.nitant.R;
 
 import java.util.ArrayList;
@@ -42,6 +44,11 @@ public class HomeFragAdapter extends RecyclerView.Adapter<HomeFragAdapter.Myclas
 
                 //Get Place and City name , sent it to different fragment (Navigation fragment) to get LAT LONG
                 Toast.makeText(context, ""+position+""+arraylocation.get(position).getPlace() + arraylocation.get(position).getCity(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, GoogleMapActivity.class);
+                intent.putExtra("place",arraylocation.get(position).getPlace());
+                intent.putExtra("city",arraylocation.get(position).getCity());
+                intent.putExtra("state",arraylocation.get(position).getState());
+                context.startActivity(intent);
 
             }
         });
