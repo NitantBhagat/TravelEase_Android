@@ -1,5 +1,7 @@
 package com.travelease.nitant.database;
 
+import static com.travelease.nitant.ui.Trip.TripManageActivity.refreshActivity;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -46,7 +48,7 @@ public class ActivityDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(ACTIVITY,activityModel.getActivity());
-        cv.put(UID,activityModel.getId());
+        cv.put(UID,activityModel.getUid());
         cv.put(DATE,activityModel.getDate());
         db.insert(TBLNAME,ID,cv);
         db.close();
@@ -68,7 +70,8 @@ public class ActivityDBHelper extends SQLiteOpenHelper {
             String date = c.getString(3);
 
             ActivityModel activityModel = new ActivityModel();
-            activityModel.setId(uid);
+            activityModel.setId(id);
+            activityModel.setUid(uid);
             activityModel.setActivity(activity);
             activityModel.setDate(date);
 
@@ -77,5 +80,13 @@ public class ActivityDBHelper extends SQLiteOpenHelper {
 
 
         return activityModelArrayList;
+    }
+
+    public void deleteActivity(Integer id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String where = ID+"="+id;
+        db.delete(TBLNAME,where,null);
+        db.close();
     }
 }

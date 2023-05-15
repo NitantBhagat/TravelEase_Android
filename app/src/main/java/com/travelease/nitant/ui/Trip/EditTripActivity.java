@@ -69,15 +69,15 @@ public class EditTripActivity extends AppCompatActivity {
                     etActivity.requestFocus();
                     return;
 
-                }
-                else {
+                } else {
 
                     activity.add(act);
-                    actModel.setId(uid);
+                    actModel.setUid(uid);
                     actModel.setActivity(act);
-
+                    actModel.setDate(date);
                 }
-                actModel.setDate(date);
+
+
                 ActivityDBHelper activityDBHelper = new ActivityDBHelper(EditTripActivity.this);
                 activityDBHelper.insertActivity(actModel);
 

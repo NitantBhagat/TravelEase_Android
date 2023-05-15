@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,19 +21,25 @@ import com.travelease.nitant.R;
 import com.travelease.nitant.Budget.budgetActivity;
 import com.travelease.nitant.database.ActivityDBHelper;
 
+import java.text.BreakIterator;
 import java.util.ArrayList;
 
 public class TripManageActivity extends AppCompatActivity {
 
-    private TextView tv_Destination,tv_StartDate,tv_Id;
+    private static ActivityDBHelper activityDBHelper;
+    private static ArrayList<ActivityModel> actmodellist;
+    private static TextView tv_StartDate;
+    private static RecyclerView rvShowAct;
+    private static String uid;
+    private static ShowActivityAdapter showActivityAdapter;
+    private TextView tv_Destination,tv_Id;
     private Button btn_Edit,btn_Budget;
-    private ArrayList<ActivityModel> actmodellist;
-    private ArrayList<ActivityModel> filtermodellist;
-    private RecyclerView rvShowAct;
-    ActivityDBHelper activityDBHelper;
-    ShowActivityAdapter showActivityAdapter;
 
-    String uid,destination;
+    private static Context context;
+
+
+
+    String destination;
 
 //    private String id;
 
@@ -40,6 +47,7 @@ public class TripManageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_manage);
+        context = this;
         getID();
 
         Intent intent = getIntent();
@@ -81,19 +89,18 @@ public class TripManageActivity extends AppCompatActivity {
 
     }
 
-    private void refreshActivity()
+    public static void refreshActivity()
     {
 
-        activityDBHelper = new ActivityDBHelper(TripManageActivity.this);
+        activityDBHelper = new ActivityDBHelper(context);
         actmodellist = (ArrayList<ActivityModel>) activityDBHelper.showActivity(uid);
         if(!(actmodellist.isEmpty()))
         {
             tv_StartDate.setText(actmodellist.get(0).getDate());
         }
 
-        rvShowAct.setLayoutManager(new LinearLayoutManager(TripManageActivity.this));
-        showActivityAdapter = new ShowActivityAdapter(actmodellist,TripManageActivity.this);
-
+        rvShowAct.setLayoutManager(new LinearLayoutManager(context));
+        showActivityAdapter = new ShowActivityAdapter(actmodellist,context);
 
         rvShowAct.setAdapter(showActivityAdapter);
     }

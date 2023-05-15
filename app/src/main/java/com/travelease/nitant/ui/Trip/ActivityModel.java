@@ -1,7 +1,16 @@
 package com.travelease.nitant.ui.Trip;
 
 public class ActivityModel {
-    String id;
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    String uid;
+    Integer id;
     String activity;
 
     String date;
@@ -14,11 +23,12 @@ public class ActivityModel {
         this.date = date;
     }
 
-    public String getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg">
+
+  <!-- Toolbar -->
+  <com.google.android.material.appbar.MaterialToolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="@color/white"
+      android:elevation="4dp"
+      android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"/>
+
+  <!-- Balance CardView -->
+  <com.google.android.material.card.MaterialCardView
+      android:id="@+id/balance_card"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/toolbar"
+      android:layout_margin="16dp"
+      android:elevation="4dp"
+      android:padding="16dp"
+      app:cardCornerRadius="8dp"
+      app:cardElevation="4dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/balance_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current Balance"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tv_budget_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rs. 5000"
+        android:textColor="@color/light_blue_200"
+        android:textSize="48sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btn_budget_add_funds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Funds"
+        android:textColor="@color/white"
+        android:background="@color/light_blue_200"
+        android:layout_gravity="center_horizontal"/>
+
+<!--      <Button-->
+<!--          android:id="@+id/add_expense_button"-->
+<!--          android:layout_width="wrap_content"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:layout_margin="10dp"-->
+<!--          android:text="Expense"-->
+<!--          android:textColor="@color/white"-->
+<!--          android:background="@color/light_blue_200"-->
+<!--          android:layout_gravity="center_horizontal"/>-->
+    </LinearLayout>
+  </com.google.android.material.card.MaterialCardView>
+
+  <!-- Transaction RecyclerView -->
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rv_budget_expense"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@id/balance_card"
+      android:padding="16dp"
+      android:clipToPadding="false"/>
+
+  <!-- Add Transaction FAB -->
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/fbtn_budget_add_expense"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="16dp"
+      android:backgroundTint="@color/light_blue"
+      android:src="@drawable/baseline_add_24" />
+
+</RelativeLayout>
