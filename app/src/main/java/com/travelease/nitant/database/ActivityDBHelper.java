@@ -2,12 +2,17 @@ package com.travelease.nitant.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
 import com.travelease.nitant.ui.Trip.ActivityModel;
+import com.travelease.nitant.ui.Trip.TripItemModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActivityDBHelper extends SQLiteOpenHelper {
 
@@ -42,7 +47,35 @@ public class ActivityDBHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(ACTIVITY,activityModel.getActivity());
         cv.put(UID,activityModel.getId());
+        cv.put(DATE,activityModel.getDate());
         db.insert(TBLNAME,ID,cv);
         db.close();
+    }
+
+    public List<ActivityModel> showActivity(String unique)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+//        String column[]={ID,UID,ACTIVITY,DATE};
+//        Cursor c =db.query(TBLNAME,column,null,null,null,null,null);
+        Cursor c =db.rawQuery( "select * from "+TBLNAME+" where "+UID+" = "+ unique, null );
+        ArrayList<ActivityModel> activityModelArrayList = new ArrayList<>();
+
+        while (c.moveToNext())
+        {
+            int id = c.getInt(0);
+            String uid = c.getString(1);
+            String activity = c.getString(2);
+            String date = c.getString(3);
+
+            ActivityModel activityModel = new ActivityModel();
+            activityModel.setId(uid);
+            activityModel.setActivity(activity);
+            activityModel.setDate(date);
+
+            activityModelArrayList.add(activityModel);
+        }
+
+
+        return activityModelArrayList;
     }
 }

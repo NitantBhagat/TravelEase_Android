@@ -1,7 +1,6 @@
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/bg">
 
     <!-- Header section -->
@@ -37,43 +36,44 @@
         android:id="@+id/from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="64dp"
         android:layout_marginStart="16dp"
-        android:text="From :" />
+        android:layout_marginTop="64dp"
+        android:text="From :"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tv_Manage_StartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="64dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
         android:layout_toRightOf="@+id/from"
-        android:text="Date" />
+        android:text="Date"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <!-- Activities section -->
     <TextView
         android:id="@+id/activitiesTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="96dp"
-        android:layout_marginStart="16dp"
-        android:text="Activities" />
-
-    <ListView
-        android:id="@+id/lv_Manage_Activity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/activitiesTitleTextView"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        android:text="Activities"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <!-- Buttons section -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_Manage_Activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activitiesTitleTextView"
+        android:layout_marginTop="20dp"
+        />
+
+
     <Button
         android:id="@+id/btn_Manage_Edit"
         android:layout_width="wrap_content"
