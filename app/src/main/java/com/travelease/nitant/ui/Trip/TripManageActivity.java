@@ -73,6 +73,7 @@ public class TripManageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(TripManageActivity.this, budgetActivity.class);
+                intent1.putExtra("uid",uid);
                 startActivity(intent1);
             }
         });
@@ -112,7 +113,6 @@ public class TripManageActivity extends AppCompatActivity {
         tv_Id=findViewById(R.id.tv_Manage_Id);
         tv_Destination=findViewById(R.id.tv_Manage_Destination);
         btn_Edit=findViewById(R.id.btn_Manage_Edit);
-//        btn_Delete=findViewById(R.id.btn_Manage_Delete);
         rvShowAct= findViewById(R.id.rv_Manage_Activity);
 
     }
