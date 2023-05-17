@@ -10,4 +10,5 @@
     <string name="trip">Trip</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_google_map">GoogleMapActivity</string>
+    <string name="forgot_password"><u>Forgot Password ?</u></string>
 </resources>

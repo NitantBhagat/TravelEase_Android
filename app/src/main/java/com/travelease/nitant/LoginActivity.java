@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText etUname,etPassword;
-    TextView tvcreateaccount;
+    TextView tvcreateaccount,tvforgotpassword;
     CheckBox cbRemember;
     Button btnLogin;
     APIInterface apiInterface;
@@ -44,6 +44,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(View view) {
                 Intent i = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(i);
+            }
+        });
+        tvforgotpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+                startActivity(intent);
             }
         });
         SharedPreferences sharedPreferences = getSharedPreferences("regi", Context.MODE_PRIVATE);
@@ -67,6 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvcreateaccount=findViewById(R.id.tv_login_createaccount);
         cbRemember=findViewById(R.id.cb_login_remember);
         btnLogin=findViewById(R.id.btn_login_login);
+        tvforgotpassword=findViewById(R.id.tv_login_forgotpassword);
     }
 
     @Override

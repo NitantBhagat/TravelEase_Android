@@ -31,4 +31,10 @@ public interface APIInterface {
     Call<ResultUInfo> login(@Field("uname") String name,
                              @Field("password") String password);
 
+    @FormUrlEncoded
+    @POST("TravelEase/recoverpw.php")
+    Call<RecoverPW> recoverdata(@Field("email") String email);
+
+
+
 }
