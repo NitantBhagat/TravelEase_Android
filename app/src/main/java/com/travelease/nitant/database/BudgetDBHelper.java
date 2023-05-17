@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.travelease.nitant.Budget.BalanceModel;
+import com.travelease.nitant.Budget.ExpenseModel;
 import com.travelease.nitant.ui.Trip.ActivityModel;
 
 import java.util.ArrayList;
@@ -74,6 +75,16 @@ public class BudgetDBHelper extends SQLiteOpenHelper {
             balanceModelArrayList.add(balanceModel);
         }
         return balanceModelArrayList;
+    }
+
+    public void insertExpense(ExpenseModel expenseModel){
+        SQLiteDatabase db=getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(UID,expenseModel.getUid());
+        cv.put(EXPENSE,expenseModel.getExpense());
+        cv.put(ACTIVITY,expenseModel.getActivity());
+        db.insert(TBLNAMEE,ID,cv);
+        db.close();
     }
 
 }
