@@ -67,19 +67,21 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
+
+
         try {
             List<Address> addresses = geocoder.getFromLocationName(LocationName,1);
-            Address addplace = addresses.get(0);
-            Log.d(TAG, "onMapReady: "+addplace.getFeatureName()+" Latitude : " +addplace.getLatitude()
-                    +" Longitude : "+addplace.getLongitude()
+            Address addressplace = addresses.get(0);
+            Log.d(TAG, "onMapReady: "+addressplace.getFeatureName()+" Latitude : " +addressplace.getLatitude()
+                    +" Longitude : "+addressplace.getLongitude()
                     +"\n"+"Place :" + place);
 
             //Getting LAT LNG of the place from google api
-            LatLng ll = new LatLng(addplace.getLatitude(),addplace.getLongitude());
+            LatLng ll = new LatLng(addressplace.getLatitude(),addressplace.getLongitude());
 
             MarkerOptions markerOptions = new MarkerOptions()
                     .position(ll)
-                    .title(place+ " " +addplace.getFeatureName());
+                    .title(place+ " " +addressplace.getFeatureName());
             mMap.addMarker(markerOptions);
 
             //Zoom effect on your location

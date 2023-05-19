@@ -33,7 +33,7 @@ public class budgetExpenseAdapter extends RecyclerView.Adapter<budgetExpenseAdap
     @Override
     public void onBindViewHolder(@NonNull Myclass holder, int position) {
         holder.tvActivity.setText(arrayList.get(position).getActivity());
-        holder.tvExpense.setText(String.valueOf(arrayList.get(position).getExpense()));
+        holder.tvExpense.setText(String.valueOf("Rs. "+arrayList.get(position).getExpense()));
     }
 
     @Override
