@@ -87,4 +87,27 @@ public class BudgetDBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public ArrayList<ExpenseModel> getExpense(int unique)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<ExpenseModel> expenseModelArrayList = new ArrayList<>();
+        Cursor c =db.rawQuery( "select * from "+TBLNAMEE+" where "+UID+" = "+ unique, null );
+
+        while (c.moveToNext())
+        {
+            int id = c.getInt(0);
+            String uid = c.getString(1);
+            String activity = c.getString(2);
+            int expense = c.getInt(3);
+
+            ExpenseModel expenseModel = new ExpenseModel();
+            expenseModel.setId(id);
+            expenseModel.setUid(uid);
+            expenseModel.setActivity(activity);
+            expenseModel.setExpense(expense);
+
+            expenseModelArrayList.add(expenseModel);
+        }
+        return expenseModelArrayList;
+    }
 }

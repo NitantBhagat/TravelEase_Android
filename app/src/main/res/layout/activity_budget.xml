@@ -50,6 +50,15 @@
         android:textSize="48sp"
         android:textStyle="bold"/>
 
+      <TextView
+          android:id="@+id/tv_budget_expense"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Rs. 5000"
+          android:textColor="#F44336"
+          android:textSize="38sp"
+          android:textStyle="bold"/>
+
     <Button
         android:id="@+id/btn_budget_add_funds"
         android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 package com.travelease.nitant.Budget;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
@@ -26,13 +27,15 @@ public class budgetActivity extends AppCompatActivity {
     RecyclerView rv_expense;
     Button btn_add_funds;
     FloatingActionButton fbtn_add_expense;
-    TextView tv_balance;
+    TextView tv_balance,tv_expense;
     MaterialToolbar mt;
     String uid;
-    Integer finalBalance = 0;
+    Integer finalBalance = 0,finalExpense=0;
     int fund=0;
+    budgetExpenseAdapter budgetExpenseAdapter;
     String activity,expense;
     ArrayList<BalanceModel> balanceArrayList = new ArrayList<>();
+    ArrayList<ExpenseModel> expenseModelArrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,13 @@ public class budgetActivity extends AppCompatActivity {
         Intent intent = getIntent();
         uid= intent.getStringExtra("uid");
 
+
+        rv_expense.setLayoutManager(new LinearLayoutManager(budgetActivity.this));
+
+
         setBalance();
+        setExpense();
+        showExpense();
 
         btn_add_funds.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +59,7 @@ public class budgetActivity extends AppCompatActivity {
 
                 showAddBudgetDialog();
                 setBalance();
+                //calculateoverallbudget
             }
         });
 
@@ -61,13 +71,21 @@ public class budgetActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
     }
+
+    private void setExpense() {
+        ArrayList<ExpenseModel> expenseModelArrayList1 = new ArrayList<>();
+        BudgetDBHelper budgetDBHelper = new BudgetDBHelper(budgetActivity.this);
+        expenseModelArrayList1=budgetDBHelper.getExpense(Integer.parseInt(uid));
+        Integer expense=0;
+
+        for(ExpenseModel model:expenseModelArrayList1){
+            expense+=model.getExpense();
+        }
+        finalExpense=expense;
+        tv_expense.setText("Rs. "+ finalExpense);
+    }
+
 
     private void showAddExpenseDialog() {
         Dialog addExpensedialog = new Dialog(budgetActivity.this);
@@ -112,13 +130,30 @@ public class budgetActivity extends AppCompatActivity {
                 BudgetDBHelper budgetDBHelper = new BudgetDBHelper(budgetActivity.this);
                 budgetDBHelper.insertExpense(expenseModel);
 
-
+                showExpense();
                 addExpensedialog.dismiss();
             }
         });
         addExpensedialog.show();
     }
 
+    private void showExpense() {
+        BudgetDBHelper budgetDBHelper = new BudgetDBHelper(budgetActivity.this);
+        expenseModelArrayList=budgetDBHelper.getExpense(Integer.parseInt(uid));
+        if(expenseModelArrayList!=null)
+        {
+            budgetExpenseAdapter = new budgetExpenseAdapter(expenseModelArrayList,budgetActivity.this);
+            rv_expense.setAdapter(budgetExpenseAdapter);
+        }
+
+        setExpense();
+    }
+
+    private void calcBudget() {
+
+
+//        tv_balance.setText();
+    }
 
 
     private void showAddBudgetDialog() {
@@ -157,7 +192,7 @@ public class budgetActivity extends AppCompatActivity {
 
         if(balanceArrayList.isEmpty())
         {
-            tv_balance.setText(String.valueOf(0));
+            tv_balance.setText("Rs. "+ 0);
         }
         else
         {
@@ -169,7 +204,7 @@ public class budgetActivity extends AppCompatActivity {
             }
             String b= String.valueOf(finalBalance);
             //set balance
-            tv_balance.setText(b);
+            tv_balance.setText("Rs. "+b);
         }
 
     }
@@ -180,6 +215,7 @@ public class budgetActivity extends AppCompatActivity {
         btn_add_funds=findViewById(R.id.btn_budget_add_funds);
         fbtn_add_expense=findViewById(R.id.fbtn_budget_add_expense);
         tv_balance=findViewById(R.id.tv_budget_amount);
+        tv_expense=findViewById(R.id.tv_budget_expense);
         mt=findViewById(R.id.toolbar);
         mt.setVisibility(View.GONE);
 
