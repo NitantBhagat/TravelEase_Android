@@ -110,4 +110,12 @@ public class BudgetDBHelper extends SQLiteOpenHelper {
         }
         return expenseModelArrayList;
     }
+
+    public void deleteExpense(Integer id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String where = ID+"="+id;
+        db.delete(TBLNAMEE,where,null);
+        db.close();
+    }
 }

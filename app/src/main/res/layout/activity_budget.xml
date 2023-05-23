@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:text="Rs. 5000"
         android:textColor="@color/light_blue_200"
-        android:textSize="48sp"
+        android:textSize="40sp"
         android:textStyle="bold"/>
 
       <TextView
@@ -56,6 +56,23 @@
           android:layout_height="wrap_content"
           android:text="Rs. 5000"
           android:textColor="#F44336"
+          android:textSize="38sp"
+          android:textStyle="bold"/>
+      <TextView
+          android:id="@+id/remainignbalance_textview"
+          android:layout_width="match_parent"
+          android:layout_marginTop="10dp"
+          android:layout_height="wrap_content"
+          android:text="Remaining Balance "
+          android:textColor="@color/cardview_dark_background"
+          android:textSize="18sp"
+          android:textStyle="bold"/>
+      <TextView
+          android:id="@+id/tv_budget_remainingbalance"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Rs. 5000"
+          android:textColor="#4CAF50"
           android:textSize="38sp"
           android:textStyle="bold"/>
 

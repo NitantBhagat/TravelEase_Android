@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,18 +25,21 @@ import java.util.ArrayList;
 
 public class budgetActivity extends AppCompatActivity {
 
-    RecyclerView rv_expense;
-    Button btn_add_funds;
-    FloatingActionButton fbtn_add_expense;
-    TextView tv_balance,tv_expense;
-    MaterialToolbar mt;
-    String uid;
-    Integer finalBalance = 0,finalExpense=0;
-    int fund=0;
-    budgetExpenseAdapter budgetExpenseAdapter;
-    String activity,expense;
-    ArrayList<BalanceModel> balanceArrayList = new ArrayList<>();
-    ArrayList<ExpenseModel> expenseModelArrayList = new ArrayList<>();
+    static RecyclerView rv_expense;
+    static Button btn_add_funds;
+    static FloatingActionButton fbtn_add_expense;
+    static TextView tv_balance;
+    static TextView tv_expense,tv_remaining;
+    static MaterialToolbar mt;
+    static String uid;
+    static Integer finalBalance = 0,finalExpense=0,remainingbal=0;
+    static int fund=0;
+    static budgetExpenseAdapter budgetExpenseAdapter;
+    static String activity,expense;
+    static ArrayList<BalanceModel> balanceArrayList = new ArrayList<>();
+    static ArrayList<ExpenseModel> expenseModelArrayList = new ArrayList<>();
+
+    static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,7 @@ public class budgetActivity extends AppCompatActivity {
         getID();
         Intent intent = getIntent();
         uid= intent.getStringExtra("uid");
+        context=this;
 
 
         rv_expense.setLayoutManager(new LinearLayoutManager(budgetActivity.this));
@@ -60,6 +65,7 @@ public class budgetActivity extends AppCompatActivity {
                 showAddBudgetDialog();
                 setBalance();
                 //calculateoverallbudget
+                calcBudget();
             }
         });
 
@@ -68,14 +74,15 @@ public class budgetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showAddExpenseDialog();
+                calcBudget();
             }
         });
 
     }
 
-    private void setExpense() {
+    public static void setExpense() {
         ArrayList<ExpenseModel> expenseModelArrayList1 = new ArrayList<>();
-        BudgetDBHelper budgetDBHelper = new BudgetDBHelper(budgetActivity.this);
+        BudgetDBHelper budgetDBHelper = new BudgetDBHelper(context);
         expenseModelArrayList1=budgetDBHelper.getExpense(Integer.parseInt(uid));
         Integer expense=0;
 
@@ -84,6 +91,9 @@ public class budgetActivity extends AppCompatActivity {
         }
         finalExpense=expense;
         tv_expense.setText("Rs. "+ finalExpense);
+        calcBudget();
+        showExpense();
+        //Calculate
     }
 
 
@@ -131,29 +141,24 @@ public class budgetActivity extends AppCompatActivity {
                 budgetDBHelper.insertExpense(expenseModel);
 
                 showExpense();
+                setExpense();
                 addExpensedialog.dismiss();
             }
         });
         addExpensedialog.show();
     }
 
-    private void showExpense() {
-        BudgetDBHelper budgetDBHelper = new BudgetDBHelper(budgetActivity.this);
+    private static void showExpense() {
+        BudgetDBHelper budgetDBHelper = new BudgetDBHelper(context);
         expenseModelArrayList=budgetDBHelper.getExpense(Integer.parseInt(uid));
         if(expenseModelArrayList!=null)
         {
-            budgetExpenseAdapter = new budgetExpenseAdapter(expenseModelArrayList,budgetActivity.this);
+            budgetExpenseAdapter = new budgetExpenseAdapter(expenseModelArrayList,context);
             rv_expense.setAdapter(budgetExpenseAdapter);
         }
-
-        setExpense();
     }
 
-    private void calcBudget() {
 
-
-//        tv_balance.setText();
-    }
 
 
     private void showAddBudgetDialog() {
@@ -179,6 +184,7 @@ public class budgetActivity extends AppCompatActivity {
                 budgetDBHelper.insertFunds(balanceModel);
                 setBalance();
                 //add calculateRemainingBalance method
+                calcBudget();
                 adddialog.dismiss();
             }
         });
@@ -188,7 +194,6 @@ public class budgetActivity extends AppCompatActivity {
     private void setBalance() {
         BudgetDBHelper budgetDBHelper = new BudgetDBHelper(budgetActivity.this);
         balanceArrayList=budgetDBHelper.getBalance(Integer.parseInt(uid));
-
 
         if(balanceArrayList.isEmpty())
         {
@@ -205,8 +210,13 @@ public class budgetActivity extends AppCompatActivity {
             String b= String.valueOf(finalBalance);
             //set balance
             tv_balance.setText("Rs. "+b);
+            calcBudget();
         }
 
+    }
+    public static void calcBudget() {
+        remainingbal=finalBalance-finalExpense;
+        tv_remaining.setText(String.valueOf(remainingbal));
     }
 
     private void getID() {
@@ -216,8 +226,10 @@ public class budgetActivity extends AppCompatActivity {
         fbtn_add_expense=findViewById(R.id.fbtn_budget_add_expense);
         tv_balance=findViewById(R.id.tv_budget_amount);
         tv_expense=findViewById(R.id.tv_budget_expense);
+        tv_remaining=findViewById(R.id.tv_budget_remainingbalance);
         mt=findViewById(R.id.toolbar);
         mt.setVisibility(View.GONE);
 
     }
+
 }
