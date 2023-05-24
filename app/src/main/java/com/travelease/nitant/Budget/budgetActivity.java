@@ -198,6 +198,7 @@ public class budgetActivity extends AppCompatActivity {
         if(balanceArrayList.isEmpty())
         {
             tv_balance.setText("Rs. "+ 0);
+            tv_remaining.setText("Rs. "+0);
         }
         else
         {
@@ -216,7 +217,7 @@ public class budgetActivity extends AppCompatActivity {
     }
     public static void calcBudget() {
         remainingbal=finalBalance-finalExpense;
-        tv_remaining.setText(String.valueOf(remainingbal));
+        tv_remaining.setText(String.valueOf("Rs. "+remainingbal));
     }
 
     private void getID() {
