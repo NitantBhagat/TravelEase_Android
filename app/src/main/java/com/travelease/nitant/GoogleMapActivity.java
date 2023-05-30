@@ -284,8 +284,7 @@ public class GoogleMapActivity extends FragmentActivity implements OnMapReadyCal
                     .withListener(this)
                     .alternativeRoutes(true)
                     .waypoints(Start, End)
-//                    .key(String.valueOf(R.string.API_KEY))  //also define your api key here.
-                    .key("AIzaSyASuHPCju2L7KSuAJpwseWXepRzzJaTL30")
+                    .key(String.valueOf("YOUR_API_KEY"))  //define your api key here.
                     .build();
             routing.execute();
         }
